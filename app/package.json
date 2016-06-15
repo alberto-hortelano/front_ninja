@@ -1,0 +1,17 @@
+{
+  "name": "Front Ninja",
+  "description": "Front end editor.",
+  "version": "1.0.0",
+  "main": "index.html",
+  "window": {
+    "title": "Front Ninja",
+    "icon": "img/logo.png",
+    "toolbar": false,
+    "frame": false,
+    "show": false,
+    "width": 1366,
+    "height": 768,
+    "min_width": 220,
+    "min_height": 220
+  }
+}
