@@ -1,0 +1,66 @@
+<html>
+<head>
+  <title>Front Ninja</title>
+
+  <link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.min.css" />
+  <link rel="stylesheet" type="text/css" href="fonts/ionicons/css/ionicons.min.css" />
+  <!--<link rel="stylesheet" type="text/css" href="jquery-ui/jquery-ui.css">-->
+  <link id="style" rel="stylesheet" type="text/css" href="css/style.css" />
+  
+  <script type="text/javascript" src="js/socket.io.js"></script>
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <!--<script type="text/javascript" src="jquery-ui/jquery-ui.js"></script>-->
+  <script type="text/javascript" src="js/qrcode.min.js"></script>
+  <script type="text/javascript" src="js/ace/ace.js"></script>
+  <script type="text/javascript" src="js/sass/sass.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+</head>
+
+<body class="home">
+  <div id="top-titlebar">
+    <div class="app_button menu" data-run="toggle_menu" title="Menu"><i class="ion-navicon-round"></i></div>
+    <h1>Front Ninja</h1>
+    <h2 id="selected_project"></h2>
+    <div id="top-titlebar-buttons">
+      <div class="app_button" data-run="close" title="Close"><i class="ion-close"></i></div>
+      <div class="app_button" data-run="maximize" title="Maximize"><i class="ion-plus"></i></div>
+      <div class="app_button" data-run="minimize" title="Minimize"><i class="ion-minus"></i></div>
+      <div class="app_button" data-run="show_help" title="Help"><i class="ion-help"></i></div>
+      <div class="app_button home" data-run="load_home" title="Home"><i class="ion-home"></i></div>
+    </div>
+  </div>
+  <div id="menu">
+  </div>
+  <div id="content">
+    <div id="app" class="frame">
+    </div>
+    <div id="side_app">
+      <div id="editor_wrapper" class="panel">
+        <div class="title"></div>
+        <div class="menu">
+          <div class="app_button save_file" data-run="save_file" title="Save file">
+            <i class="ion-archive"></i>
+          </div>
+        </div>
+        <div id="editor"></div>
+      </div>
+      <div id="preview_wrapper" class="panel">
+        <div class="title"></div>
+        <div class="menu"></div>
+        <div id="preview"></div>
+      </div>
+      <div id="css_files" class="panel">
+      </div>
+    </div>
+    <div id="qr">
+      <span id="close_qr" onclick="$(this).parent().removeClass('open')"><i class="ion-close"></i></span>
+      <span id="qr_img"></span>
+      <span id="qr_url"></span>
+    </div>
+  </div>
+  <div id="help">
+    <div id="help_resizer"></div>
+    <div id="help_content"></div>
+  </div>
+</body>
+</html>

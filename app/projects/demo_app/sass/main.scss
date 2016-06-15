@@ -1,0 +1,122 @@
+$bg: #39404a;
+$white: rgba(255,255,255,0.6);
+@import "nav";
+@import "footer/footer";
+@import "../partials/sass/header";
+body {
+	background: $bg;
+}
+.fake-img { 
+    min-height: 500px;
+    background-position: 50% 40%;
+    background-size: cover;
+	&.first-slide {
+	    background-image: url(../img/2.jpg);
+	}
+	&.second-slide {
+	    background-image: url(../img/3.jpg);
+	}
+	&.third-slide {
+	    background-image: url(../img/1.jpg);
+	}
+}
+.buttons {
+    padding: 20px 10px;
+    margin: 0 auto;
+    max-width: 460px;
+
+ 	.square {
+ 		width: 33.33333333%;
+		padding-bottom: 33.33333333%;
+		float: left;
+		position: relative;
+
+		.circle {
+		    position: absolute;
+		    top: 10%;
+		    right: 10%;
+		    left: 10%;
+		    bottom: 10%;
+			text-align: center;
+			padding: 0;
+		    border-radius: 50%;
+		    box-shadow: 0 0 0 70px $bg inset;
+		    background-color: $white;
+		    color: $white;
+
+		    &.clicked {
+		    	box-shadow: none;
+			    color: $bg;
+		    }
+
+			i {
+			    display: inline-block;
+			    text-align: center;
+			    height: 50px;
+			    line-height: 50px;
+			    font-size: 50px;
+			    width: 50px;
+			    position: absolute;
+			    top: 50%;
+			    left: 50%;
+                -webkit-transform: translate(-50%, -50%);
+    			-ms-transform: translate(-50%, -50%);
+			    transform: translate(-50%, -50%);
+			}
+		}
+	}
+}
+#popup {
+    position: absolute;
+    background: #ddd;
+    overflow: auto;
+    top: 10px;
+    bottom: 10px;
+    right: 110%;
+    left: -100%;
+    box-shadow: 0 0 5px;
+    padding: 40px 10px 10px 10px;
+    -webkit-transition: all .4s;
+    -moz-transition: all .4s;
+    -o-transition: all .4s;
+    transition: all .4s;
+
+    &.visible {
+	    right: 10px;
+	    left: 10px;
+    }
+}
+#closepopup {
+    text-align: right;
+    height: 40px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    padding: 10px;
+    z-index: 9;
+}
+#results {
+
+	img {
+		display:block;
+		margin: 10px auto;
+	}
+}
+#log {
+	background: black;
+	color: green;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    .error {
+    	background-color: red;
+    	color: yellow;
+    }
+}
+
+@media only screen and (max-width: 460px) {
+	.buttons {
+		max-width: 100%;
+	}
+}

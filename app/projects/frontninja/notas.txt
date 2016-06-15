@@ -1,0 +1,33 @@
+Front Ninja
+The front end development environment for webs and apps
+
+	
+
+
+	Front ninja is:
+
+		A server:
+
+		A Sass/Scss compiler:
+
+		A code editor:
+
+		A file manager:
+
+		A live App editor:
+
+
+
+Cosas q hace:
+
+	Servidor con handlebars -> puedes incluir partials con hbs 
+
+	File manager -> Se ve el contenido de las carpetas con filtro por tipo
+
+	Code editor 
+
+	Compilador de scss en vivo -> seleccionas scss y target css y ves el cambio en la web sin recargar
+
+	Exporta a html -> puedes exportar a html los partials 
+
+	Live App editor -> Te bajas la app de la propia aplicación pones la url y eliges tu proyecto

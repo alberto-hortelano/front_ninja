@@ -1,0 +1,104 @@
+
+.anchors {
+	ul {
+		text-align: center;
+
+		li {
+			display: inline-block;
+		}
+
+		a {
+			
+			display: block;
+		    position: relative;
+		    padding: 30px;
+		    &:hover{
+		    	span {
+		    		color: $light_blue;
+		    	}
+		    }
+			i {
+				display: block;
+				font-size: 50px;
+    			margin-bottom: 20px;
+			}
+
+			span {
+			    line-height: 30px;
+			    display: inline-block;
+			    //margin: 0 30px;
+			    font-size: 1.3em;
+			    color: #1e1e1e;
+			    -webkit-transition: color 0.25s ease;
+			    -moz-transition: color 0.25s ease;
+			    -o-transition: color 0.25s ease;
+			    transition: color 0.25s ease;
+			}
+		}
+	}
+}
+
+#articles{
+	
+	article {
+		padding: 100px 0;
+		position: relative;
+
+		.anchor-mark {
+			position: absolute;
+			top: -100px;
+		}
+		
+		.w_260 {
+		    width: 260px;
+		    clear: both;
+		}
+
+		.w_100-260_right {
+    		margin-left: 270px;
+		}
+
+		.w_100-260_left {
+    		margin-right: 360px;
+		}
+
+		.section_title {
+			font-size: 2em;
+			margin-bottom: 20px;
+			color: $light_blue;
+		}
+		.description {
+			font-size: 2.5em;
+		    display: block;
+    		margin-bottom: 30px;
+		}
+	}
+	#server {
+		background: #E9E9E9;
+
+		.anchor-mark {
+			top: -80px;
+		}
+		
+		.prettyprint {
+			box-sizing: border-box;
+		    border-radius: 0;
+		    width: 100%;
+		    margin: 0;
+		    font-size: 12px;
+		}
+	}
+	#file {
+		background:  $light_blue;
+		h1 {
+			color: #fff;
+		}
+	}
+
+	#scss {
+		background:  #000;
+		.description {
+			color: #fff;
+		}
+	}
+}

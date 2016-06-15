@@ -1,0 +1,98 @@
+<div id="pages" class="pages">
+	<div class="button_set">
+		<label>
+			<input type="radio" name="file_filter">
+			<div class="app_button button" data-run="filter_files" data-args="html" title="Show Html">HTML</div>
+		</label>
+		<label>
+			<input type="radio" name="file_filter">
+			<div class="app_button button" data-run="filter_files" data-args="css" title="Show Css">CSS</div>
+		</label>
+		<label>
+			<input type="radio" name="file_filter">
+			<div class="app_button button" data-run="filter_files" data-args="sass" title="Show Sass">SASS</div>
+		</label>
+		<label>
+			<input type="radio" name="file_filter">
+			<div class="app_button button" data-run="filter_files" data-args="all" title="Show All">All</div>
+		</label>
+	</div>
+	{{#pages_list pages}}
+		{{#if is_html}}
+
+			<div class="file html">
+				<span>{{name}}</span>
+				<div class="app_button button" data-run="edit_file" data-args="{{path}}" title="Edit">
+					<i class="ion-edit" aria-hidden="true"></i>
+				</div>
+				<div class="app_button button subl" data-run="open_sublime" data-args="{{path}}" title="Open on sublime">
+					<i class="fa fa-subl" aria-hidden="true">S</i>
+				</div>
+				<div class="app_button button" data-run="open" data-args="{{path}}" title="Open as file">
+					<i class="fa fa-file-text" aria-hidden="true"></i>
+				</div>
+				<div class="app_button button" data-run="open" data-args="{{url}}" title="Open url">
+					<i class="fa fa-link" aria-hidden="true"></i>
+				</div>
+				<div class="app_button button" data-run="open_chrome" data-args="{{url}}" title="Open on chrome">
+					<i class="fa fa-chrome" aria-hidden="true"></i>
+				</div>
+				<div class="app_button button" data-run="open_firefox" data-args="{{url}}" title="Open on firefox">
+					<i class="fa fa-firefox" aria-hidden="true"></i>
+				</div>
+				<div class="app_button button" data-run="preview" data-args="{{url}}" title="Preview">
+					<i class="fa fa-eye" aria-hidden="true"></i>
+				</div>
+	      		<div class="app_button button" data-run="generate_qr" data-args="{{url}}" title="QR code">
+	      			<i class="fa fa-qrcode"></i>
+	      		</div>
+	      		<div class="app_button button" data-run="mob" data-args='{{mob_ajax_data}}' title="View on mobile app">
+	      			<i class="fa fa-mobile"></i>
+	      		</div>
+			</div>
+
+		{{else if is_css}}
+
+			<div class="file css" data-path="{{path}}">
+				<span>{{name}}</span>
+				<div class="app_button button" data-run="edit_file" data-args="{{path}}" title="Edit">
+					<i class="ion-edit" aria-hidden="true"></i>
+				</div>
+				<div class="app_button button subl" data-run="open_sublime" data-args="{{path}}" title="Open on sublime">
+					<i class="fa fa-subl" aria-hidden="true">S</i>
+				</div>
+				<div class="app_button button" data-run="open" data-args="{{path}}" title="Open as file">
+					<i class="fa fa-file-text" aria-hidden="true"></i>
+				</div>
+			</div>
+
+		{{else if is_sass}}
+
+			<div class="file sass">
+				<span>{{name}}</span>
+				<div class="app_button button" data-run="edit_file" data-args="{{path}}" title="Edit">
+					<i class="ion-edit" aria-hidden="true"></i>
+				</div>
+				<div class="app_button button subl" data-run="open_sublime" data-args="{{path}}" title="Open on sublime">
+					<i class="fa fa-subl" aria-hidden="true">S</i>
+				</div>
+				<div class="app_button button" data-run="open" data-args="{{path}}" title="Open as file">
+					<i class="fa fa-file-text" aria-hidden="true"></i>
+				</div>
+				<div class="app_button button" data-run="select_css_sass" data-args="{{path}}" title="Compile">
+					<i class="ion-social-sass" aria-hidden="true"></i>
+				</div>
+				<div class="app_button button hidden" data-run="unselect_css_sass" title="Unselect">
+					<i class="ion-close" aria-hidden="true"></i>
+				</div>
+			</div>
+
+		{{else}}
+
+			<div class="app_button button folder" data-run="toggle_folder">
+				<i class="fa fa-folder-open" aria-hidden="true"></i>{{this}}
+			</div>
+
+		{{/if}}
+	{{/pages_list}}
+</div>

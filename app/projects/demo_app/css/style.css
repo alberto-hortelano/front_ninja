@@ -1,0 +1,109 @@
+nav.navbar-fixed-top {
+  position: absolute; }
+nav a {
+  color: green; }
+
+footer {
+  color: orange;
+  background: black; }
+
+header {
+  background: pink;
+  color: red; }
+
+body {
+  background: #39404a; }
+
+.fake-img {
+  min-height: 500px;
+  background-position: 50% 40%;
+  background-size: cover; }
+  .fake-img.first-slide {
+    background-image: url(../img/2.jpg); }
+  .fake-img.second-slide {
+    background-image: url(../img/3.jpg); }
+  .fake-img.third-slide {
+    background-image: url(../img/1.jpg); }
+
+.buttons {
+  padding: 20px 10px;
+  margin: 0 auto;
+  max-width: 460px; }
+  .buttons .square {
+    width: 33.33333333%;
+    padding-bottom: 33.33333333%;
+    float: left;
+    position: relative; }
+    .buttons .square .circle {
+      position: absolute;
+      top: 10%;
+      right: 10%;
+      left: 10%;
+      bottom: 10%;
+      text-align: center;
+      padding: 0;
+      border-radius: 50%;
+      box-shadow: 0 0 0 70px #39404a inset;
+      background-color: rgba(255, 255, 255, 0.6);
+      color: rgba(255, 255, 255, 0.6); }
+      .buttons .square .circle.clicked {
+        box-shadow: none;
+        color: #39404a; }
+      .buttons .square .circle i {
+        display: inline-block;
+        text-align: center;
+        height: 50px;
+        line-height: 50px;
+        font-size: 50px;
+        width: 50px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%); }
+
+#popup {
+  position: absolute;
+  background: #ddd;
+  overflow: auto;
+  top: 10px;
+  bottom: 10px;
+  right: 110%;
+  left: -100%;
+  box-shadow: 0 0 5px;
+  padding: 40px 10px 10px 10px;
+  -webkit-transition: all .4s;
+  -moz-transition: all .4s;
+  -o-transition: all .4s;
+  transition: all .4s; }
+  #popup.visible {
+    right: 10px;
+    left: 10px; }
+
+#closepopup {
+  text-align: right;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding: 10px;
+  z-index: 9; }
+
+#results img {
+  display: block;
+  margin: 10px auto; }
+
+#log {
+  background: black;
+  color: green;
+  text-overflow: ellipsis;
+  overflow: hidden; }
+  #log .error {
+    background-color: red;
+    color: yellow; }
+
+@media only screen and (max-width: 460px) {
+  .buttons {
+    max-width: 100%; } }

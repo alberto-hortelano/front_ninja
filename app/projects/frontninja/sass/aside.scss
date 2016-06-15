@@ -1,0 +1,108 @@
+
+#aside {
+	background-color: $light_blue;
+    text-align: center;
+    height: 50px;
+
+	nav{
+		background-color: $light_blue;
+	    top: 0;
+	    right: 0;
+	    left: 0;
+	    z-index: 1000;
+
+	    &.fixed {
+	    	position: fixed;
+
+			a {
+			    line-height: 50px;
+			}
+	    }
+
+		a {
+		    line-height: 50px;
+		    display: inline-block;
+		    padding: 0 20px;
+		    color: white;
+		    text-decoration: none;
+		    font-weight: 700;
+
+		    &:hover {
+		    	background-color: rgba(255,255,255,0.2);
+		    }
+		}
+	}
+
+	ul {
+		position: fixed;
+	    top: 50px;
+	    right: 0;
+	    left: 0;
+	    height: 50px;
+	    z-index: 1000;
+	    background-color: white;
+	    display: none;
+	    margin: 0;
+	    overflow: hidden;
+
+		&.fixed {
+			display: block
+		}
+
+		li {
+			display: inline-block;
+
+			a {
+				display: inline-block;
+
+				&.selected {
+
+					i {
+						color: $light_blue;
+					}
+				}
+			}
+
+			i {
+				font-size: 20px;
+				line-height: 50px;
+				color: #1e1e1e;
+    			padding: 0 .6em;
+    			position: relative;
+    			bottom: 0;
+			}
+		}
+	}
+}
+
+#nav {
+	position: relative;
+	padding: 120px 0;
+}
+/* Talkbubble Shape */
+#talkbubble {
+	position: absolute;
+	top: 25px;
+	left: 40px;
+	background: $light_blue;
+	-moz-border-radius:    48%;
+	-webkit-border-radius: 48%;
+	border-radius: 48%;
+	color: #fff;
+	text-align: center;
+}
+#talkbubble:before {
+	content:"";
+	position: absolute;
+	right: 96%;
+	top: 49px;
+	width: 0;
+	height: 0;
+	border-top: 11px solid transparent;
+    border-right: 26px solid $light_blue;
+    border-bottom: 12px solid transparent;
+}
+#talkbubble h2 {
+	padding: 40px 30px;
+    font-size: 1.2em;
+}

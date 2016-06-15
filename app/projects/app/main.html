@@ -1,0 +1,46 @@
+{{#each projects}}
+	<div class="card project_card">
+		<div class="card_inner">
+			<h2 class="app_button" data-run="load_template" data-args='{{files_ajax_data}}' title="Open project">{{project}}</h2>
+			<div class="iframe_wrapper {{#unless ../preview_projects}}hidden{{/unless}}{{is_app}}">
+	      		<div class="app_button" data-run="load_template" data-args='{{files_ajax_data}}' ></div>
+	      		{{#if ../preview_projects}}
+				<iframe src="{{url}}"></iframe>
+				{{/if}}
+			</div>
+	      	<div class="app_button button" data-run="generate_qr" data-args="{{url}}" title="QR code">
+	      		<i class="fa fa-qrcode"></i>
+	      	</div>
+	      	<div class="app_button button" data-run="open" data-args="{{url}}" title="Open project on browser">
+	      		<i class="fa fa-link"></i>
+	      	</div>
+	      	<div class="app_button button" data-run="load_template" data-args='{{files_ajax_data}}' title="Open project">
+	      		<i class="fa fa-folder"></i>
+	      	</div>
+	      	<div class="app_button button" data-run="mob" data-args='{{mob_ajax_data}}' title="Run as app">
+	      		<i class="fa fa-mobile"></i>
+  			</div>
+	      	<div class="app_button button" data-run="to_html" data-args='{{project}}' title="Export to html">
+	      		<i class="ion-social-html5"></i>
+	      	</div>
+	    </div>	
+	</div>
+{{/each}}
+	<div class="card project_card new_project">
+		<div class="card_inner">
+			<h2 class="app_button" data-run="new_project" title="New project">New project</h2>
+			<input class="new_title" type="text" placeholder="New Project"></input>
+			<div class="iframe_wrapper">
+	      		<div class="app_button" data-run="new_project"><span class="giant_plus"></span></div>
+			</div>
+	      	<div class="button left" title="Is mobile App">
+	      		<label>
+		      		<input type="checkbox">
+		      		<i class="fa fa-mobile"></i>
+	      		</label>
+	      	</div>
+	      	<div class="app_button create_project" data-run="create_project" title="Create project">
+	      		Create new project
+	      	</div>
+	    </div>	
+	</div>

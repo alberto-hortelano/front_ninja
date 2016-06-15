@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+	<title>Demo</title>
+
+    <!-- FONTS -->
+    <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+
+    <!-- CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <!-- JS -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+	<!--
+		Scripts included this way are only printed once, if the same script is called again 
+		it's not printed, this is usefull for partials with dependencies
+        {{#script}}./js/jquery.js{{/script}}
+	-->
+</head>
+<body>
+
+    {{> demo_app/partials/content}}
+
+    <div id="popup">
+        <div id="closepopup"><i class="ion-close-round"></i></div>
+        <div id="results">
+        </div>
+        <div id="log">
+        </div>
+    </div>
+
+    <script type="text/javascript">
+    $( document ).ready(function() {
+        setSize();
+        $( window ).on( "resize", function() { setSize() } );
+        $('.circle').on('click', function() {
+            $('#log').text('');
+            var $this = $(this);
+            $this.addClass('clicked');
+            app[$this.data('run')].run();
+        });
+        $('#closepopup').on('click', function() {
+            hidePopup();
+        });
+    });
+    window.onerror = function(error, url, line) {
+        errlog(error);
+    };
+    function setSize(){
+        $('.buttons').width((window.innerHeight > window.innerWidth)?window.innerWidth:window.innerHeight);
+    }
+    function log(text){
+        showPopup();
+        $('#log').append('<p>➡'+text+'</p>');
+    }
+    function objlog(obj){
+        showPopup();
+        $('#log').append('<p>➡'+JSON.stringify(obj).split(",").join(",<br>")+'</p>');
+    }
+    function errlog(obj){
+        showPopup();
+        $('#log').append('<p class="error">➡Error: '+JSON.stringify(obj).split(",").join(",<br>")+'</p>');
+    }
+    function showResult(result){
+        $('#results').html(result);
+    }
+    function showPopup(){
+        $('#popup').addClass('visible');
+        $('.circle').removeClass('clicked');
+    }
+    function hidePopup(){
+        $('#results').empty();
+        $('#popup').removeClass('visible');
+    }
+    var app = {
+        camera: {
+            onSuccess: function(imageURI) {
+                log('camera onSuccess');
+                log(imageURI);
+                var img = $('<img width="160" height="auto" alt="image" src="" />')[0];
+                img.src = imageURI;
+                showResult(img);
+            },
+            onFail: function(error) {
+                errlog(error);
+            },
+            run: function(){
+                navigator.camera.getPicture(this.onSuccess, this.onFail, { 
+                    quality: 50,
+                    destinationType: Camera.DestinationType.FILE_URI 
+                });
+            }
+        },
+        contacts: {
+            onSuccess: function(contact) {
+                log('contacts onSuccess');
+                objlog(contact);
+            },
+            onFail: function(error) {
+                errlog(error);
+            },
+            run: function() {
+                navigator.contacts.pickContact(this.onSuccess, this.onFail);
+            }
+        },
+        device: {
+            run: function() {
+                log('device info:');
+                objlog(device);
+            }
+        },
+        accelerometer: {
+            onSuccess: function(acceleration) {
+                $('#log').text('');
+                log('acceleration:');
+                objlog(acceleration);
+            },
+            onFail: function(error) {
+                errlog(error);
+            },
+            run: function() {
+                var watchID = navigator.accelerometer.watchAcceleration(this.onSuccess, this.onFail,{
+                    frequency:1000
+                });
+                objlog(navigator.accelerometer);
+                setTimeout(function(){
+                    navigator.accelerometer.clearWatch(watchID);
+                },10000);
+            }
+        },
+        compass: {
+            onSuccess: function(heading) {
+                $('#log').text('');
+                log('compass:');
+                objlog(heading);
+            },
+            onFail: function(error) {
+                errlog(error);
+            },
+            run: function() {
+                var watchID = navigator.compass.watchHeading(this.onSuccess, this.onFail,{
+                    frequency:1000
+                });
+                objlog(navigator.accelerometer);
+                setTimeout(function(){
+                    navigator.compass.clearWatch(watchID);
+                },10000);
+            }
+        },
+        filesystem: {
+            onSuccess: function(fs) {
+                log('file system open: ' + fs.name);
+                fs.root.createReader().readEntries(function(entries){
+                    objlog(entries);
+                },this.onFail);
+            },
+            onFail: function(error) {
+                errlog(error);
+            },
+            run: function() {
+                window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, this.onSuccess, this.onFail);
+            }
+        },
+        geolocation: {
+            onSuccess: function(position) {
+                objlog(position);
+            },
+            onFail: function(error) {
+                errlog(error);
+            },
+            run: function() {
+                navigator.geolocation.getCurrentPosition(this.onSuccess, this.onFail);
+            }
+        },
+        connection: {
+            run: function() {
+                objlog(navigator.connection);
+            }
+        },
+        vibrate: {
+            run: function() {
+                navigator.vibrate(400);
+                objlog(StatusBar);
+            }
+        }
+    };
+
+    </script>
+</body>
+</html>

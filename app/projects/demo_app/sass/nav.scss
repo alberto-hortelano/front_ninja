@@ -1,0 +1,9 @@
+$nav_color: green;
+nav {
+	&.navbar-fixed-top {
+		position: absolute;
+	}
+	a {
+		color: $nav_color;
+	}
+}

@@ -1,0 +1,26 @@
+nav a {
+  color: green; }
+
+footer {
+  color: orange;
+  background: black; }
+  footer p {
+    margin: 1em 0; }
+
+header {
+  background: pink;
+  color: red; }
+
+body {
+  background: white; }
+
+.fake-img {
+  min-height: 500px;
+  background-position: 50% 40%;
+  background-size: cover; }
+  .fake-img.first-slide {
+    background-image: url(../img/2.jpg); }
+  .fake-img.second-slide {
+    background-image: url(../img/3.jpg); }
+  .fake-img.third-slide {
+    background-image: url(../img/1.jpg); }

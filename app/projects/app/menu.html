@@ -1,0 +1,38 @@
+
+    <div class="button_set switch">
+      <header>Theme</header>
+      <label>
+        <input type="radio" name="theme" {{#if theme_light}}checked{{/if}}>
+        <div class="app_button" data-run="set_theme" data-args="light">Light</div>
+      </label>
+      <label>
+        <input type="radio" name="theme" {{#unless theme_light}}checked{{/unless}}>
+        <div class="app_button" data-run="set_theme" data-args="dark">Dark</div>
+      </label>
+    </div>
+    <div class="button_set switch">
+      <header>Preview projects</header>
+      <label>
+        <input type="radio" name="preview_projects" {{#if preview_projects}}checked{{/if}}>
+        <div class="app_button" data-run="preview_projects" data-args="true">Yes</div>
+      </label>
+      <label>
+        <input type="radio" name="preview_projects" {{#unless preview_projects}}checked{{/unless}}>
+        <div class="app_button" data-run="preview_projects" data-args="false">No</div>
+      </label>
+    </div>
+    <div class="button_set switch">
+      <header>Native window</header>
+      <label>
+        <input type="radio" name="native_window" {{#if native_window}}checked{{/if}}>
+        <div class="app_button" data-run="native_window" data-args="true">Yes</div>
+      </label>
+      <label>
+        <input type="radio" name="native_window" {{#unless native_window}}checked{{/unless}}>
+        <div class="app_button" data-run="native_window" data-args="false">No</div>
+      </label>
+    </div>
+    <div class="button_set switch">
+      <header>Download App</header>
+	  <div class="app_button" data-run="download_app" data-args="{{app_url}}" title="Maximize"><i class="ion-iphone"></i>App</div>
+    </div>
