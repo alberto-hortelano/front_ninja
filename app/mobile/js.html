@@ -1,0 +1,84 @@
+var url = $('#input').val();
+$.ajax({
+    url:"css/index.css", // relative path to www folder
+    type:"get",
+    contentType:"application/text",
+    success: function(text){
+        $('#log').text(JSON.stringify(text));
+    },
+    fail: function(text){
+        $('#log').text(JSON.stringify(text));
+    }
+});
+function fail(e){
+	$('#log').text(JSON.stringify(e));
+}
+
+function gotDir(dirEntry) {
+    $('#log').text("gotDir..."+JSON.stringify(dirEntry));
+    dirEntry.getFile("demo.txt", {create: true, exclusive: false}, gotFile,fail);
+}
+
+function gotFile(fileEntry) {
+    $('#log').text("gotFile...");
+    fileEntry.createWriter(gotWriter,fail);
+}
+
+function gotWriter(fileWriter) {
+    $('#log').text("gotWriter...");
+
+    fileWriter.onwriteend = function() {
+        $('#log').text("fileWriter.onwriteend...");
+        window.resolveLocalFileSystemURL(cordova.file.dataDirectory,  function(dirEntry){
+        	$('#log').text("window.resolveLocalFileSystemURL...");
+			dirEntry.getFile("demo.txt", {create: true, exclusive: false}, function(fileEntry){
+        		$('#log').text("dirEntry.getFile..."+JSON.stringify(fileEntry));
+				window.location = fileEntry.nativeURL;
+        		return;
+
+				fileEntry.file(function (file) {
+			        var reader = new FileReader();
+        			$('#log').text("fileEntry.file...");
+
+			        reader.onloadend = function() {
+        				$('#log').text("reader.onloadend...");
+            			$('#log').text(JSON.stringify(this));
+
+			        };
+
+			        reader.readAsText(file);
+
+			    }, fail);
+
+			},fail);
+        });
+    };
+
+    fileWriter.onerror = function (e) {
+        $('#log').text("Failed file read: " + e.toString());
+    };
+
+    // If data object is not passed in,
+    // create a new Blob instead.
+    var dataObj = new Blob(['sos un moco'], { type: 'text/plain' });
+    
+    fileWriter.write(dataObj);
+
+}
+
+function readFile(fileEntry) {
+
+    fileEntry.file(function (file) {
+        var reader = new FileReader();
+
+        reader.onloadend = function() {
+            $('#log').text(JSON.stringify(this));
+            //displayFileData(fileEntry.fullPath + ": " + this.result);
+        };
+
+        reader.readAsText(file);
+
+    }, onErrorReadFile);
+}
+
+window.resolveLocalFileSystemURL(cordova.file.dataDirectory,  gotDir);

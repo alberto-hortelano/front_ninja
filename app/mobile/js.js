@@ -1,0 +1,1 @@
+ninja.log('js.js');

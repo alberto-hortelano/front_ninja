@@ -1,0 +1,59 @@
+var localURLs    = [
+    cordova.file.applicationDirectory,
+    cordova.file.applicationStorageDirectory,
+    cordova.file.dataDirectory,
+    cordova.file.documentsDirectory,
+    cordova.file.cacheDirectory,
+    cordova.file.externalApplicationStorageDirectory,
+    cordova.file.externalCacheDirectory,
+    cordova.file.externalDataDirectory,
+    //cordova.file.externalRootDirectory,
+    cordova.file.externalDataDirectory,
+    cordova.file.sharedDirectory,
+    cordova.file.syncedDataDirectory,
+    cordova.file.tempDirectory
+];
+$("#log").html(JSON.stringify(cordova));
+var index = 0;
+var i;
+var statusStr = "";
+var addFileEntry = function (entry) {
+    var dirReader = entry.createReader();
+    dirReader.readEntries(
+        function (entries) {
+            var fileStr = "";
+            var i;
+            for (i = 0; i < entries.length; i++) {
+                if (entries[i].isDirectory === true) {
+                    // Recursive -- call back into this subdirectory
+                    addFileEntry(entries[i]);
+                } else {
+                   fileStr += (entries[i].fullPath + "<br>"); // << replace with something useful
+                   index++;
+                }
+            }
+            // add this directory's contents to the status
+            statusStr += fileStr;
+            // display the file list in #results
+            if (statusStr.length > 0) {
+                $("#log_reset").html(statusStr);
+            }else{
+                $("#log_reset").html('NOOO');
+            }
+        },
+        function (error) {
+            console.log("readEntries error: " + error.code);
+            statusStr += "<p>readEntries error: " + error.code + "</p>";
+        }
+    );
+};
+var addError = function (error) {
+    console.log("getDirectory error: " + error.code);
+    statusStr += "<p>getDirectory error: " + error.code + ", " + error.message + "</p>";
+};
+for (i = 0; i < localURLs.length; i++) {
+    if (localURLs[i] === null || localURLs[i].length === 0) {
+        continue; // skip blank / non-existent paths for this platform
+    }
+    window.resolveLocalFileSystemURL(localURLs[i], addFileEntry, addError);
+}
