@@ -16,7 +16,7 @@ How to Use it:
    
    * b) Linux: Install nw globally [instructions for nw.js](https://github.com/nwjs/nw.js) ( is pretty easy ), then click on init ( it's a bash file with the command 'nw app' )
    
-   * c) Mac: It doesn't run, but It should. Appreciate any collaboration on this, probably has something to do with paths?. Also, Front Ninja contains an .apk file, wich is an android App, It should be possible to create an Ios App just by compiling frontninja/app/mobile/www folder with phonegap but I don't have an Iphone, a mac nor a Ios developer license :´(
+   * c) Mac: Double clik on init_osx, It should be possible to create an Ios App just by compiling frontninja/app/mobile/www folder with phonegap but I don't have an Iphone, a mac nor a IOS developer license :´(
 
 A Front end editor, includes:
 
